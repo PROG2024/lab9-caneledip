@@ -9,6 +9,12 @@ class Circle:
         
         :param radius: radius of the circle, may be zero.
         :raises ValueError: if radius is negative.
+
+        >>> c1 = Circle(2)
+        >>> c2 = Circle(-1)
+        Traceback (most recent call last):
+            ...
+        ValueError: radius must be non-negative
         """
         if radius < 0:
             raise ValueError("radius must be non-negative")
@@ -19,6 +25,14 @@ class Circle:
         area of this circle and another circle.
         Since area is pi*r**2, the radii of the 3 circles
         should form a Pythagorean triple (r1^2 + r2^2 = r3^2)
+
+        >>> c1 = Circle(3)
+        >>> c2 = Circle(4)
+        >>> new_c = c1.add_area(c2)
+        >>> new_c.get_area()
+        78.53981633974483
+        >>> new_c.get_radius()
+        5.0
         """
         r1 = self.get_radius()
         r2 = circle.get_radius()
@@ -30,6 +44,14 @@ class Circle:
         return Circle(r)
 
     def get_area(self) -> float:
+        """Return an area of the circle.
+        >>> c1 = Circle(2)
+        >>> c1.get_radius()
+        2
+        >>> c2 = Circle(40)
+        >>> c2.get_radius()
+        40
+        """
         return math.pi*self.radius*self.radius
     
     def get_radius(self) -> float:
@@ -39,3 +61,7 @@ class Circle:
         return f"Circle({self.radius})"
     
     __repr__ = __str__
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
